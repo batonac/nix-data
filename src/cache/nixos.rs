@@ -24,7 +24,7 @@ pub async fn nixospkgs() -> Result<String> {
     }
 
     let verurl = format!(
-        "https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/nixos-{}/nixpkgs.ver",
+        "https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/nixos-{}/nixpkgs.ver",
         version
     );
     debug!("Checking NixOS version");
@@ -45,7 +45,7 @@ pub async fn nixospkgs() -> Result<String> {
     let latestnixosver = if resp.status().is_success() {
         resp.text().await?
     } else {
-        let resp = reqwest::get("https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/nixos-unstable/nixpkgs.ver").await?;
+        let resp = reqwest::get("https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/nixos-unstable/nixpkgs.ver").await?;
         if resp.status().is_success() {
             version = "unstable";
             resp.text().await?
@@ -69,7 +69,7 @@ pub async fn nixospkgs() -> Result<String> {
     }
 
     let url = format!(
-        "https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/nixos-{}/nixpkgs.db.br",
+        "https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/nixos-{}/nixpkgs.db.br",
         version
     );
     debug!("Downloading nix-data database");

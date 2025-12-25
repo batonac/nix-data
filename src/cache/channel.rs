@@ -75,7 +75,7 @@ pub async fn legacypkgs() -> Result<String> {
 
     // Get list of packages
     let pkgout = if let Some(rev) = version.get("nixpkgsRevision") {
-        let url = format!("https://raw.githubusercontent.com/snowflakelinux/nixpkgs-version-data/main/nixos-{}/{}.json.br", relver, rev);
+        let url = format!("https://raw.githubusercontent.com/snowfallorg/nixpkgs-version-data/main/nixos-{}/{}.json.br", relver, rev);
         println!("{}", url);
         let resp = reqwest::get(&url).await?;
         if resp.status().is_success() {
@@ -88,7 +88,7 @@ pub async fn legacypkgs() -> Result<String> {
             println!("Decompressed");
             pkgsjson
         } else {
-            let url = format!("https://raw.githubusercontent.com/snowflakelinux/nixpkgs-version-data/main/nixos-unstable/{}.json.br", rev);
+            let url = format!("https://raw.githubusercontent.com/snowfallorg/nixpkgs-version-data/main/nixos-unstable/{}.json.br", rev);
             println!("{}", url);
             let resp = reqwest::get(&url).await?;
             if resp.status().is_success() {

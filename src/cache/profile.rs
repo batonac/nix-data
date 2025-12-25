@@ -161,11 +161,11 @@ pub async fn nixpkgslatest() -> Result<String> {
     if !pinned {
         let verurl = if let Some(v) = &nixpkgsver {
             format!(
-                "https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/{}/nixpkgs.ver",
+                "https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/{}/nixpkgs.ver",
                 v
             )
         } else {
-            String::from("https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/nixpkgs-unstable/nixpkgs.ver")
+            String::from("https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/nixpkgs-unstable/nixpkgs.ver")
         };
         debug!("Checking nixpkgs version");
         let resp = reqwest::get(&verurl).await;
@@ -201,16 +201,16 @@ pub async fn nixpkgslatest() -> Result<String> {
 
     let url = if pinned {
         format!(
-            "https://raw.githubusercontent.com/snowflakelinux/nixpkgs-version-data/main/nixos-unstable/{}.json.br",
+            "https://raw.githubusercontent.com/snowfallorg/nixpkgs-version-data/main/nixos-unstable/{}.json.br",
             latestnixpkgsver
         )
     } else if let Some(v) = &nixpkgsver {
         format!(
-            "https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/{}/nixpkgs_versions.db.br",
+            "https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/{}/nixpkgs_versions.db.br",
             v
         )
     } else {
-        String::from("https://raw.githubusercontent.com/snowflakelinux/nix-data-db/main/nixpkgs-unstable/nixpkgs_versions.db.br")
+        String::from("https://raw.githubusercontent.com/snowfallorg/nix-data-db/main/nixpkgs-unstable/nixpkgs_versions.db.br")
     };
     debug!("Downloading nix-data database");
     let client = reqwest::Client::builder().brotli(true).build()?;

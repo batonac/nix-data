@@ -42,7 +42,7 @@ pub async fn flakespkgs() -> Result<String> {
 
     // Get list of packages from flake
     let pkgsout = if let Some(rev) = version.get("nixpkgsRevision") {
-        let url = format!("https://raw.githubusercontent.com/snowflakelinux/nixpkgs-version-data/main/nixos-{}/{}.json.br", nixosversion.get(0..5).context("Invalid NixOS version")?, rev);
+        let url = format!("https://raw.githubusercontent.com/snowfallorg/nixpkgs-version-data/main/nixos-{}/{}.json.br", nixosversion.get(0..5).context("Invalid NixOS version")?, rev);
         let resp = reqwest::get(&url).await?;
         if resp.status().is_success() {
             let r = resp.bytes().await?;
@@ -52,7 +52,7 @@ pub async fn flakespkgs() -> Result<String> {
             let pkgsjson: HashMap<String, String> = serde_json::from_slice(&pkgsout)?;
             pkgsjson
         } else {
-            let url = format!("https://raw.githubusercontent.com/snowflakelinux/nixpkgs-version-data/main/nixos-unstable/{}.json.br", rev);
+            let url = format!("https://raw.githubusercontent.com/snowfallorg/nixpkgs-version-data/main/nixos-unstable/{}.json.br", rev);
             let resp = reqwest::get(&url).await?;
             if resp.status().is_success() {
                 let r = resp.bytes().await?;
