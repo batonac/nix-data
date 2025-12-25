@@ -4,7 +4,7 @@ version = "0.0.3"
 edition = "2021"
 license = "MIT"
 description = "A set of modules for easily managing Nix and NixOS packages and options"
-repository = "https://github.com/snowfallorg/nix-data/"
+repository = "https://github.com/batonac/nix-data/"
 readme = "README.md"
 include = [
   "src/*",
